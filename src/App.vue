@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="toonBoodschap">Open modal</button>
+    <cvo-modal :open="isOpen" :titel="titel" :boodschap="boodschap" @close="isOpen = false"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CvoModal from './components/CvoModal.vue'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      isOpen: false,
+      titel: "",
+      boodschap: ""
+    }
+  },
   components: {
-    HelloWorld
-  }
+    CvoModal
+  },
+  methods: {
+    toonBoodschap() {
+      this.isOpen = true;
+      this.titel = "Welkom";
+      this.boodschap = "Deze modal is een herbruikbare component";
+    }
+  },
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
