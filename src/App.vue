@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <button @click="toonBoodschap">Open modal</button>
-    <cvo-modal :open="isOpen" :titel="titel" :boodschap="boodschap" @close="isOpen = false"/>
+    <transition name="modal">
+      <cvo-modal v-if="modalOpen" :titel="titel" :boodschap="boodschap" @close="modalOpen = false"/>
+    </transition>
   </div>
 </template>
 
@@ -12,9 +14,9 @@ export default {
   name: 'app',
   data() {
     return {
-      isOpen: false,
+      modalOpen: false,
       titel: "",
-      boodschap: ""
+      boodschap: "",
     }
   },
   components: {
@@ -22,7 +24,7 @@ export default {
   },
   methods: {
     toonBoodschap() {
-      this.isOpen = true;
+      this.modalOpen = true;
       this.titel = "Welkom";
       this.boodschap = "Deze modal is een herbruikbare component";
     }
@@ -31,5 +33,11 @@ export default {
 </script>
 
 <style>
+.modal-enter, .modal-leave-to {
+  opacity: 0;
+}
 
+.modal-enter-active, .modal-leave-active {
+  transition: opacity .5s;
+}
 </style>

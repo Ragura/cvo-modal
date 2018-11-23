@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" v-show="open" @click="$emit('close')">
+    <div class="modal" @click="$emit('close')">
         <div class="modal-box" @click.stop>
             <h1>{{ titel }}</h1>
             <hr>
@@ -12,7 +12,6 @@
 <script>
     export default {
         props: {
-            open: Boolean,
             titel: String,
             boodschap: String
         },
